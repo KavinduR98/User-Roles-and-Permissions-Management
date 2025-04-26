@@ -54,6 +54,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('roles.index') }}">Manage Roles</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Manage Users</a>
                             </li>
                             <li class="nav-item">

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ __('Users') }}</div>
+                    <div class="card-header">{{ __('Roles') }}</div>
 
                     <div class="card-body">
 
@@ -15,27 +15,27 @@
                             </div>
                         @endsession
 
-                        <a class="btn btn-success mb-3" href="{{ route('products.create') }}">Create Product</a>
+                        <a class="btn btn-success mb-3" href="{{ route('roles.create') }}">Create Role</a>
 
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th width="60px">ID</th>
                                     <th>Name</th>
-                                    <th>Action</th>
+                                    <th width="200px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($roles as $role)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $role->id }}</td>
+                                        <td>{{ $role->name }}</td>
                                         <td>
-                                            <form method="POST" action="{{ route('products.destroy', $product->id) }}">
+                                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">Show</a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info btn-sm">Show</a>
+                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                         </form>
                                         </td>
