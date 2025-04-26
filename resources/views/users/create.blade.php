@@ -38,6 +38,16 @@
                             @enderror
                         </div>
 
+                        <div class="mt-2">
+                            <label>Roles:</label>
+                            <select name="roles[]" class="form-select" multiple>
+                                <option>--Select Role--</option>
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class=" mt-2">
                             <button class="btn btn-success">Submit</button>
                         </div>
