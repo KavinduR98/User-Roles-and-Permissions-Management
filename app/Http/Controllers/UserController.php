@@ -38,11 +38,13 @@ class UserController extends Controller
             "password"=> "required"
             ]);
 
-        User::create([
+        $user = User::create([
             "name"=> $request->name,
             "email"=> $request->email,
             "password"=> Hash::make($request->password)
             ]);
+
+        $user->syncRoles($request->roles);
 
         return redirect()->route("users.index")
                             ->with("success","User created!");
@@ -63,7 +65,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::find($id);
-        return view("users.edit", compact("user"));
+        $roles = Role::all();
+        return view("users.edit", compact("user","roles"));
     }
 
     /**
@@ -73,8 +76,7 @@ class UserController extends Controller
     {
         $request->validate([
             "name"=> "required",
-            "email"=> "required|email",
-            "password"=> "required"
+            "email"=> "required|email"
             ]);
 
         $user = User::find($id);
@@ -83,6 +85,8 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
+
+        $user->syncRoles($request->roles);
 
         return redirect()->route("users.index")
                             ->with("success","User updated!");
