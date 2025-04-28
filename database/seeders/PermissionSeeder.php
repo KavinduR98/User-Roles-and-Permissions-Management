@@ -22,10 +22,16 @@ class PermissionSeeder extends Seeder
             "product-create",
             "product-edit",
             "product-delete",
+            "user-list",
+            "user-create",
+            "user-edit",
+            "user-delete",
         ];
 
         foreach ($permissions as $key => $permission) {
-            Permission::create(['name' => $permission]);
+            if (!Permission::where('name', $permission)->exists()) {
+                Permission::create(['name' => $permission]);
+            }
         }
     }
 }
